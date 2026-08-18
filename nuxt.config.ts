@@ -1,0 +1,57 @@
+export default defineNuxtConfig({
+  compatibilityDate: "2025-01-15",
+  devtools: { enabled: true },
+  modules: ["@element-plus/nuxt"],
+  css: ["~/assets/css/main.css"],
+  runtimeConfig: {
+    adminAccounts: "",
+    adminEmails: "",
+    linuxdoClientId: "",
+    linuxdoClientSecret: "",
+    linuxdoRedirectUri: "",
+    linuxdoAuthorizeUrl: "https://connect.linux.do/oauth2/authorize",
+    linuxdoTokenUrl: "https://connect.linux.do/oauth2/token",
+    linuxdoUserUrl: "https://connect.linux.do/api/user",
+    linuxdoScope: "",
+    minioEndpoint: "localhost",
+    minioPort: "9000",
+    minioUseSSL: "false",
+    minioAccessKey: "",
+    minioSecretKey: "",
+    minioBucket: "zr-access-portal",
+    minioRegion: "us-east-1",
+    minioPublicBaseUrl: "http://localhost:9000/zr-access-portal",
+    public: {
+      appName: "小溯应用工坊",
+      appUrl: "http://localhost:3000",
+      defaultCallbackUrl: ""
+    }
+  },
+  app: {
+    head: {
+      htmlAttrs: { lang: "zh-CN" },
+      title: "小溯应用工坊",
+      meta: [
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content: "统一登录门户、邀请码审核和网站服务授权中心"
+        }
+      ],
+      link: [
+        { rel: "icon", type: "image/svg+xml", href: "/logo.svg" },
+        { rel: "apple-touch-icon", href: "/logo.svg" }
+      ]
+    }
+  },
+  nitro: {
+    experimental: {
+      openAPI: true
+    }
+  },
+  vite: {
+    server: {
+      allowedHosts: ["yevette-overcopious-darrick.ngrok-free.dev"]
+    }
+  }
+});

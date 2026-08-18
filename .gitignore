@@ -1,0 +1,15 @@
+.nuxt
+.output
+.docs
+node_modules
+.env
+.env.*
+!.env.example
+*.local
+*.log
+tmp-*.png
+*.bak
+*.bak-*
+--port
+prisma/dev.db
+public/docs
