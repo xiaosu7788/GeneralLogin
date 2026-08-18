@@ -32,7 +32,7 @@ NUXT_MINIO_PUBLIC_BASE_URL=https://files.example.com/zr-access-portal
 ```bash
 docker compose up -d --build
 docker compose ps
-curl http://127.0.0.1:3000/api/health
+curl http://127.0.0.1:3005/api/health
 ```
 
 应用容器依赖 MySQL、MinIO 和 bucket 初始化容器。首次启动时，`docker/entrypoint.sh` 默认执行：
@@ -61,7 +61,7 @@ docker compose up -d --build app
 
 | 服务 | 默认端口 | 变量 |
 | --- | ---: | --- |
-| 门户 | 3000 | `APP_PORT` |
+| 门户 | 3005 | `APP_PORT` |
 | MySQL | 3306 | `MYSQL_PORT` |
 | MinIO API | 9000 | `MINIO_API_PORT` |
 | MinIO Console | 9001 | `MINIO_CONSOLE_PORT` |
@@ -97,7 +97,7 @@ pnpm build
 ### 启动
 
 ```bash
-HOST=127.0.0.1 PORT=3000 node .output/server/index.mjs
+HOST=127.0.0.1 PORT=3005 node .output/server/index.mjs
 ```
 
 systemd 示例：
@@ -113,7 +113,7 @@ WorkingDirectory=/opt/general-login
 EnvironmentFile=/opt/general-login/.env
 Environment=NODE_ENV=production
 Environment=HOST=127.0.0.1
-Environment=PORT=3000
+Environment=PORT=3005
 ExecStart=/usr/bin/node /opt/general-login/.output/server/index.mjs
 Restart=always
 RestartSec=5
@@ -124,7 +124,7 @@ WantedBy=multi-user.target
 
 ### Nginx 反向代理
 
-将公网 HTTPS 请求转发到 `127.0.0.1:3000`，并把 OAuth 回调地址配置为：
+将公网 HTTPS 请求转发到 `127.0.0.1:3005`，并把 OAuth 回调地址配置为：
 
 ```text
 https://portal.example.com/api/auth/linuxdo/callback
@@ -153,7 +153,7 @@ Docker 部署执行 `docker compose up -d --build app`；systemd 部署重启应
 ## 5. 健康检查和排障
 
 ```bash
-curl -i http://127.0.0.1:3000/api/health
+curl -i http://127.0.0.1:3005/api/health
 docker compose logs --tail=200 app
 docker compose ps
 ```

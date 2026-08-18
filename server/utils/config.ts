@@ -22,7 +22,7 @@ export function getAdminAccounts() {
 
 export function getAppUrl() {
   const config = getRuntimeConfig();
-  return config.public.appUrl || "http://localhost:3000";
+  return config.public.appUrl || "http://localhost:3005";
 }
 
 export function getDefaultCallbackUrl() {

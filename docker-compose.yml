@@ -20,11 +20,11 @@ services:
       NUXT_ADMIN_ACCOUNTS: ${NUXT_ADMIN_ACCOUNTS:-admin}
       NUXT_ADMIN_EMAILS: ${NUXT_ADMIN_EMAILS:-}
       NUXT_PUBLIC_APP_NAME: ${NUXT_PUBLIC_APP_NAME:-ZR-AI服务}
-      NUXT_PUBLIC_APP_URL: ${NUXT_PUBLIC_APP_URL:-http://localhost:3000}
+      NUXT_PUBLIC_APP_URL: ${NUXT_PUBLIC_APP_URL:-http://localhost:3005}
       NUXT_PUBLIC_DEFAULT_CALLBACK_URL: ${NUXT_PUBLIC_DEFAULT_CALLBACK_URL:-}
       NUXT_LINUXDO_CLIENT_ID: ${NUXT_LINUXDO_CLIENT_ID:-}
       NUXT_LINUXDO_CLIENT_SECRET: ${NUXT_LINUXDO_CLIENT_SECRET:-}
-      NUXT_LINUXDO_REDIRECT_URI: ${NUXT_LINUXDO_REDIRECT_URI:-http://localhost:3000/api/auth/linuxdo/callback}
+      NUXT_LINUXDO_REDIRECT_URI: ${NUXT_LINUXDO_REDIRECT_URI:-http://localhost:3005/api/auth/linuxdo/callback}
       NUXT_LINUXDO_SCOPE: ${NUXT_LINUXDO_SCOPE:-}
       NUXT_LINUXDO_AUTHORIZE_URL: ${NUXT_LINUXDO_AUTHORIZE_URL:-https://connect.linux.do/oauth2/authorize}
       NUXT_LINUXDO_TOKEN_URL: ${NUXT_LINUXDO_TOKEN_URL:-https://connect.linux.do/oauth2/token}
@@ -38,7 +38,7 @@ services:
       NUXT_MINIO_REGION: ${NUXT_MINIO_REGION:-us-east-1}
       NUXT_MINIO_PUBLIC_BASE_URL: ${NUXT_MINIO_PUBLIC_BASE_URL:-http://localhost:9000/zr-access-portal}
     ports:
-      - "${APP_PORT:-3000}:3000"
+      - "${APP_PORT:-3005}:3005"
     depends_on:
       mysql:
         condition: service_healthy
@@ -47,7 +47,7 @@ services:
       minio-init:
         condition: service_completed_successfully
     healthcheck:
-      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3005/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
       interval: 30s
       timeout: 10s
       retries: 5

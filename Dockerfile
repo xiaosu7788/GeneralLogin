@@ -31,7 +31,7 @@ FROM base AS runner
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
-ENV PORT=3000
+ENV PORT=3005
 
 COPY --from=build /app/.output ./.output
 COPY --from=build /app/node_modules ./node_modules
@@ -44,7 +44,7 @@ COPY docker/entrypoint.sh ./docker/entrypoint.sh
 
 RUN chmod +x ./docker/entrypoint.sh
 
-EXPOSE 3000
+EXPOSE 3005
 
 ENTRYPOINT ["./docker/entrypoint.sh"]
 CMD ["node", ".output/server/index.mjs"]

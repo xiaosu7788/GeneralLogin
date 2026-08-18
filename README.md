@@ -22,7 +22,7 @@ pnpm db:backfill-accounts
 pnpm dev
 ```
 
-门户默认地址为 `http://localhost:3000`。开发环境的数据库和 MinIO 可以直接使用 Compose 中的本地服务。
+门户默认地址为 `http://localhost:3005`。开发环境的数据库和 MinIO 可以直接使用 Compose 中的本地服务。
 
 ## 环境变量
 
@@ -47,7 +47,7 @@ cp .env.example .env
 # 编辑 .env，修改数据库、MinIO、管理员和公网地址配置
 docker compose up -d --build
 docker compose ps
-curl http://127.0.0.1:3000/api/health
+curl http://127.0.0.1:3005/api/health
 ```
 
 Compose 会启动 `app`、`mysql`、`minio` 和 `minio-init`。首次启动默认执行数据库结构同步和账号回填。生产环境完成首次初始化并备份数据库后，建议设置：
@@ -67,10 +67,10 @@ pnpm db:generate
 pnpm db:push
 pnpm db:backfill-accounts
 pnpm build
-HOST=127.0.0.1 PORT=3000 node .output/server/index.mjs
+HOST=127.0.0.1 PORT=3005 node .output/server/index.mjs
 ```
 
-生产环境请通过 systemd、进程管理器或容器注入环境变量，不要把 `.env` 复制进公开构建产物。反向代理应将公网 HTTPS 请求转发到本地 `3000` 端口。
+生产环境请通过 systemd、进程管理器或容器注入环境变量，不要把 `.env` 复制进公开构建产物。反向代理应将公网 HTTPS 请求转发到本地 `3005` 端口。
 
 ## 常用命令
 

@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     minioPublicBaseUrl: "http://localhost:9000/zr-access-portal",
     public: {
       appName: "小溯应用工坊",
-      appUrl: "http://localhost:3000",
+      appUrl: "http://localhost:3005",
       defaultCallbackUrl: ""
     }
   },
