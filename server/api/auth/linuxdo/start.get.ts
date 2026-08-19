@@ -1,4 +1,4 @@
-import { createError, getQuery, setCookie, sendRedirect } from "h3";
+import { createError, getQuery, getRequestProtocol, setCookie, sendRedirect } from "h3";
 import {
   buildExternalLoginState,
   getLinuxdoAuthorizeUrl
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
     {
       httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: getRequestProtocol(event) === "https",
       path: "/",
       maxAge: OAUTH_MAX_AGE
     }

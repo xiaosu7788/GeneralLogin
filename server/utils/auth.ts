@@ -5,6 +5,7 @@ import {
   getCookie,
   getRequestHeader,
   getRequestIP,
+  getRequestProtocol,
   setCookie,
   type H3Event
 } from "h3";
@@ -35,7 +36,7 @@ export async function createSession(event: H3Event, profile: UserProfile) {
   setCookie(event, SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: getRequestProtocol(event) === "https",
     path: "/",
     maxAge: SESSION_MAX_AGE
   });
